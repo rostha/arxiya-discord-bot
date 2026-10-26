@@ -1,0 +1,29 @@
+{
+  "token": "Not for you",
+  "prefix": ">",
+  "suggest":"903721083566432337",
+  "report":"903721064700473434",
+  "loadSlashsGlobal": true, "_COMMENT_": "Set it to true, when your Slash Commands are ready, false loads instant true loads slow but stable! (GLOBAL/GUILD COMMANDS, DISCORD DOCS!)",
+  "b": "#2f3136",
+  "g":"#77f070",
+"y":"#f1f144",
+"p":"#d46ae9",
+"r":"#ff2325",
+"colors": {
+        "yes" : "#ddcc33",
+        "no"  : "#ff4d4d"
+      },
+  "slashCommandsDirs": [
+        {
+                "Folder": "Info",
+                "CmdName": "info",
+                "CmdDescription": "Grant specific Information about something!"
+        },
+        {
+                "Folder": "Admin",
+                "CmdName": "admin",
+                "CmdDescription": "Administrate the Server!"
+        }
+   ]
+}
+

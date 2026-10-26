@@ -1,0 +1,43 @@
+const {
+    readdirSync
+} = require("fs");
+const ascii = require("ascii-table");
+let table = new ascii("Commands");
+table.setHeading("Command", "Load status");
+module.exports = (client) => {
+    try {
+        let amount = 0;
+        readdirSync("./commands/").forEach((dir) => {
+            const commands = readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith(".js"));
+            for (let file of commands) {
+                let pull = require(`../commands/${dir}/${file}`);
+                if (pull.name) {
+                    client.commands.set(pull.name, pull);
+                    table.addRow(file, "Ready & Accessed Succesflly!");
+                    amount++;
+                } else {
+                    table.addRow(
+                        file,
+                        `Error -> missing a cmd.name, or cmd.name is not a string.`
+                      );
+                      continue;
+                }
+                if (pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach((alias) => client.aliases.set(alias, pull.name));
+            }
+        });
+        console.log(table.toString().brightWhite);
+        console.log("Access granted".brightCyan);
+      
+    } catch (e) {
+        console.log(String(e.stack).bgRed)
+    }
+};
+/**
+ * @INFO
+ * Bot Coded by Tomato#6966 | https://discord.gg/milrato
+ * @INFO
+ * Work for Milrato Development | https://milrato.eu
+ * @INFO
+ * Please mention Him / Milrato Development, when using this Code!
+ * @INFO
+ */
